@@ -56,9 +56,9 @@ RUN wget -qO - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo ap
 # RUN apt-get update && \
 #  apt-get install -y oracle-java8-installer elasticsearch
 
-# Pour lancer le service au démarrage. Si ça ne fonctionne pas on mettra cela dans supervisor.
+# Pour lancer le service au démarrage. Si ça ne fonctionne pas on mettra cela dans supervisord.
 RUN update-rc.d elasticsearch defaults 95 10
-RUN /etc/init.d/elasticsearch start
+# RUN /etc/init.d/elasticsearch start // Ne fonctionne pas, alors on va mettre ça dans supervisord.
 
 # Pour télécharger, placer atom au bon endroit et donner les droits pour le serveur Web.
 RUN mkdir /var/www/html/atom && \
@@ -77,8 +77,9 @@ ADD conf/atom.conf /etc/php5/fpm/pool.d/
 ADD conf/my.cnf /etc/mysql/conf.d/my.cnf
 ADD conf/supervisord-apache2.conf /etc/supervisor/conf.d/supervisord-apache2.conf
 ADD conf/supervisord-mysqld.conf /etc/supervisor/conf.d/supervisord-mysqld.conf
+ADD conf/supervisord-elasticsearch.conf /etc/supervisor/conf.d/supervisord-elasticsearch.conf
 
-# Pour que notre installation de atom soit accessible à 0.0.0.0:80/atom
-EXPOSE 80 3306 9200
+# Pour que notre installation de atom, mysql et elasticsearch soient accessible à 0.0.0.0:80/atom
+EXPOSE 80 3306 9200 9300
 
 CMD ["/run.sh"]
