@@ -1,5 +1,7 @@
 # Pour le cours ARV3054, idéalement vous devrions utiliser la fonctionnalité de liaison entre les contenants.
 
+# Les instructions d'installation originales proviennent de : https://www.accesstomemory.org/en/docs/2.2/admin-manual/installation/linux/#installation-linux
+
 FROM ubuntu:latest
 
 MAINTAINER Dominic Boisvert <dominic.boisvert@hbarchivistes.qc.ca>
@@ -77,6 +79,6 @@ ADD conf/supervisord-apache2.conf /etc/supervisor/conf.d/supervisord-apache2.con
 ADD conf/supervisord-mysqld.conf /etc/supervisor/conf.d/supervisord-mysqld.conf
 
 # Pour que notre installation de atom soit accessible à 0.0.0.0:80/atom
-EXPOSE 80 3306
+EXPOSE 80 3306 9200
 
 CMD ["/run.sh"]
