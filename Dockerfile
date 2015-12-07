@@ -33,8 +33,10 @@ RUN apt-get update && \
   php5-mysql \
   php5-readline \
   php5-xsl \
+  pkg-config \
   poppler-utils \
   python-software-properties \
+  software-properties-common \
   supervisor \
   tar \
   wget && \
@@ -49,8 +51,8 @@ RUN a2enmod rewrite xsendfile
 # Installer elasticsearch et ses édpendances.
 RUN wget -qO - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add -
 
-RUN add-apt-repository ppa:webupd8team/java -y && \
-  apt-get update && \
+RUN add-apt-repository ppa:webupd8team/java -y
+RUN apt-get update && \
   apt-get install oracle-java8-installer elasticsearch
 
 # Pour lancer le service au démarrage. Si ça ne fonctionne pas on mettra cela dans supervisor.
