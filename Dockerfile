@@ -8,7 +8,7 @@ MAINTAINER Dominic Boisvert <dominic.boisvert@hbarchivistes.qc.ca>
 
 # Variables pour notre dockerfile.
 ENV ATOM_URL https://storage.accesstomemory.org/releases/atom-2.1.2.tar.gz
-ENV ATOM_VERSION 2.2.0
+ENV ATOM_VERSION 2.1.2
 ENV ATOM_DB_NAME atom
 ENV ATOM_DB_USER root
 # ENV ATOM_DB_PASS //Ne fonctionne pas car le mot de passe est vide.
@@ -64,7 +64,7 @@ RUN update-rc.d elasticsearch defaults 95 10
 RUN mkdir /var/www/html/atom && \
     wget https://storage.accesstomemory.org/releases/atom-2.1.2.tar.gz && \
     tar xzf atom-2.1.2.tar.gz && \
-    mv atom-2.1.2/* var/www/html/atom/ && \
+    mv atom-2.2.0/* var/www/html/atom/ && \
     chown -R www-data:www-data /var/www/html/atom
 
 # Divers scripts et configurations.
