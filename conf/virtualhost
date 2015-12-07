@@ -1,0 +1,11 @@
+<VirtualHost *:80>
+  DocumentRoot /var/www/html/atom
+  RewriteEngine On
+  RewriteRule ^/uploads/r/([^/]*)/conf/(.*)$ /var/www/html/atom/uploads/r/$1/conf/$2 [L]
+  RewriteRule ^/uploads/(.*)$ /var/www/html/atom/uploads/$1 [L]
+  <LocationMatch ^/uploads>
+    XSendFile On
+    XSendFilePath /var/www/html/atom/uploads
+    SetEnv ATOM_XSENDFILE 1
+  </LocationMatch>
+</VirtualHost>

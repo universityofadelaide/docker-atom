@@ -15,13 +15,15 @@ ENV DEBIAN_FRONTEND noninteractive
 # Pour mettre à jour les dépôts et installer les paquets nécessaires et faire le ménage.
 ADD conf/elasticsearch.list /etc/apt/sources.list.d/
 RUN apt-get update && \
-  apt-get -y install \
+  apt-get -y --no-install-recommends --force-yes install \
   apache2 \
+  elasticsearch \
   ghostscript \
   imagemagick \
   libapache2-mod-php5 \
   libapache2-mod-xsendfile \
   mysql-server \
+  openjdk-7-jre-headless \
   php-apc \
   php5-cli \
   php5-curl \
@@ -33,14 +35,11 @@ RUN apt-get update && \
   php5-mysql \
   php5-readline \
   php5-xsl \
-  pkg-config \
   poppler-utils \
-  python-software-properties \
-  software-properties-common \
   supervisor \
   tar \
   wget && \
-  echo "ServerName localhost" > /etc/apache2/apache2.conf && \
+#  echo "ServerName localhost" > /etc/apache2/apache2.conf && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* \
   /tmp/* \
@@ -51,16 +50,16 @@ RUN a2enmod rewrite xsendfile
 # Installer elasticsearch et ses édpendances.
 RUN wget -qO - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add -
 
-RUN add-apt-repository ppa:webupd8team/java -y
-RUN apt-get update && \
-  apt-get install oracle-java8-installer elasticsearch -y
+# RUN add-apt-repository ppa:webupd8team/java -y
+# RUN apt-get update && \
+#  apt-get install -y oracle-java8-installer elasticsearch
 
 # Pour lancer le service au démarrage. Si ça ne fonctionne pas on mettra cela dans supervisor.
 RUN update-rc.d elasticsearch defaults 95 10
 RUN /etc/init.d/elasticsearch start
 
 # Pour télécharger, placer atom au bon endroit et donner les droits pour le serveur Web.
-RUN mkdir /var/www/html/atom \
+RUN mkdir /var/www/html/atom && \
     wget https://storage.accesstomemory.org/releases/atom-2.1.2.tar.gz && \
     tar xzf atom-2.1.2.tar.gz && \
     mv atom-2.1.2/* var/www/html/atom/ && \
