@@ -53,7 +53,7 @@ RUN wget -qO - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo ap
 
 RUN add-apt-repository ppa:webupd8team/java -y
 RUN apt-get update && \
-  apt-get install oracle-java8-installer elasticsearch
+  apt-get install oracle-java8-installer elasticsearch -y
 
 # Pour lancer le service au démarrage. Si ça ne fonctionne pas on mettra cela dans supervisor.
 RUN update-rc.d elasticsearch defaults 95 10
