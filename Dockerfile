@@ -49,7 +49,7 @@ RUN a2enmod rewrite xsendfile
 # Installer elasticsearch et ses édpendances.
 RUN wget -qO - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add -
 
-RUN add-apt-repository ppa:webupd8team/java && \
+RUN add-apt-repository ppa:webupd8team/java -y && \
   apt-get update && \
   apt-get install oracle-java8-installer elasticsearch
 
