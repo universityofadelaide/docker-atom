@@ -7,12 +7,9 @@ FROM ubuntu:latest
 MAINTAINER Dominic Boisvert <dominic.boisvert@hbarchivistes.qc.ca>
 
 # Variables pour notre dockerfile.
-ENV ATOM_URL https://storage.accesstomemory.org/releases/atom-2.1.2.tar.gz
-ENV ATOM_VERSION 2.1.2
-ENV ATOM_DB_NAME atom
-ENV ATOM_DB_USER root
-# ENV ATOM_DB_PASS //Ne fonctionne pas car le mot de passe est vide.
-ENV DEBIAN_FRONTEND noninteractive
+ENV ATOM_URL=https://storage.accesstomemory.org/releases/atom-2.1.2.tar.gz
+ENV ATOM_VERSION=2.2.0
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Pour mettre à jour les dépôts et installer les paquets nécessaires et faire le ménage.
 ADD conf/elasticsearch.list /etc/apt/sources.list.d/
@@ -41,7 +38,6 @@ RUN apt-get update && \
   supervisor \
   tar \
   wget && \
-#  echo "ServerName localhost" > /etc/apache2/apache2.conf && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* \
   /tmp/* \
@@ -49,22 +45,11 @@ RUN apt-get update && \
 
 RUN a2enmod rewrite xsendfile
 
-# Installer elasticsearch et ses édpendances.
-RUN wget -qO - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add -
-
-# RUN add-apt-repository ppa:webupd8team/java -y
-# RUN apt-get update && \
-#  apt-get install -y oracle-java8-installer elasticsearch
-
-# Pour lancer le service au démarrage. Si ça ne fonctionne pas on mettra cela dans supervisord.
-RUN update-rc.d elasticsearch defaults 95 10
-# RUN /etc/init.d/elasticsearch start // Ne fonctionne pas, alors on va mettre ça dans supervisord.
-
 # Pour télécharger, placer atom au bon endroit et donner les droits pour le serveur Web.
 RUN mkdir /var/www/html/atom && \
     wget https://storage.accesstomemory.org/releases/atom-2.1.2.tar.gz && \
     tar xzf atom-2.1.2.tar.gz && \
-    mv atom-2.2.0/* var/www/html/atom/ && \
+    mv atom-2.1.2/* var/www/html/atom/ && \
     chown -R www-data:www-data /var/www/html/atom
 
 # Divers scripts et configurations.
