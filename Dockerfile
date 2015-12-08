@@ -8,7 +8,7 @@ MAINTAINER Dominic Boisvert <dominic.boisvert@hbarchivistes.qc.ca>
 
 # Variables pour notre dockerfile.
 ENV ATOM_URL=https://storage.accesstomemory.org/releases/atom-2.1.2.tar.gz
-ENV ATOM_VERSION=2.2.0
+ENV ATOM_VERSION=2.1.2
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Pour mettre à jour les dépôts et installer les paquets nécessaires et faire le ménage.
