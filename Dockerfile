@@ -67,4 +67,8 @@ ADD conf/supervisord-elasticsearch.conf /etc/supervisor/conf.d/supervisord-elast
 # Pour que notre installation de atom, mysql et elasticsearch soient accessible à 0.0.0.0:80/atom
 EXPOSE 80 3306 9200 9300
 
+# Volume pour partager des fichiers entre le host et le conteneur Docker.
+RUN mkdir /partage
+VOLUME ["/partage"]
+
 CMD ["/run.sh"]
