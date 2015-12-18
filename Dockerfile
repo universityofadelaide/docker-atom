@@ -4,7 +4,7 @@
 
 FROM ubuntu:latest
 
-MAINTAINER Dominic Boisvert <dominic.boisvert@hbarchivistes.qc.ca>
+MAINTAINER Dominic Boisvert <dominic.boisvert.1@umontreal.ca>
 
 # Variables pour notre dockerfile.
 ENV ATOM_URL=https://storage.accesstomemory.org/releases/atom-2.1.2.tar.gz
