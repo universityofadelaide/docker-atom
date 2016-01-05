@@ -49,7 +49,7 @@ RUN a2enmod rewrite xsendfile
 RUN mkdir /var/www/html/atom && \
     wget $ATOM_URL && \
     tar xzf atom-$ATOM_VERSION.tar.gz && \
-    mv atom-ATOM_VERSION/* var/www/html/atom/ && \
+    mv atom-$ATOM_VERSION/* var/www/html/atom/ && \
     chown -R www-data:www-data /var/www/html/atom
 
 # Divers scripts et configurations.
