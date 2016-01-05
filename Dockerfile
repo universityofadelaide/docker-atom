@@ -7,8 +7,8 @@ FROM ubuntu:latest
 MAINTAINER Dominic Boisvert <dominic.boisvert.1@umontreal.ca>
 
 # Variables pour notre dockerfile.
-ENV ATOM_URL=https://storage.accesstomemory.org/releases/atom-2.1.2.tar.gz
-ENV ATOM_VERSION=2.1.2
+ENV ATOM_URL=https://storage.accesstomemory.org/releases/atom-2.2.0.tar.gz
+ENV ATOM_VERSION=2.2.0
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Pour mettre à jour les dépôts et installer les paquets nécessaires et faire le ménage.
@@ -47,9 +47,9 @@ RUN a2enmod rewrite xsendfile
 
 # Pour télécharger, placer atom au bon endroit et donner les droits pour le serveur Web.
 RUN mkdir /var/www/html/atom && \
-    wget https://storage.accesstomemory.org/releases/atom-2.1.2.tar.gz && \
-    tar xzf atom-2.1.2.tar.gz && \
-    mv atom-2.1.2/* var/www/html/atom/ && \
+    wget $ATOM_URL && \
+    tar xzf atom-2.2.0.tar.gz && \
+    mv atom-2.2.0/* var/www/html/atom/ && \
     chown -R www-data:www-data /var/www/html/atom
 
 # Divers scripts et configurations.
