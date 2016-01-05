@@ -1,4 +1,4 @@
-# Pour le cours ARV3054, idéalement vous devrions utiliser la fonctionnalité de liaison entre les contenants.
+# Pour le cours ARV3054, idéalement vous devrions utiliser la fonctionnalité de liaison entre les contenants. Nous demeeurons à la version 2.1.2 car cela fonctionne pour nous.
 
 # Les instructions d'installation originales proviennent de : https://www.accesstomemory.org/en/docs/2.2/admin-manual/installation/linux/#installation-linux
 
