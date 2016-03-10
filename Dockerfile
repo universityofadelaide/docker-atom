@@ -7,8 +7,8 @@ FROM ubuntu:latest
 MAINTAINER Dominic Boisvert <dominic.boisvert.1@umontreal.ca>
 
 # Variables pour notre dockerfile.
-ENV ATOM_URL=https://storage.accesstomemory.org/releases/atom-2.1.2.tar.gz
-ENV ATOM_VERSION=2.1.2
+ENV ATOM_URL=https://storage.accesstomemory.org/releases/atom-2.2.1.tar.gz
+ENV ATOM_VERSION=2.2.1
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Pour mettre à jour les dépôts et installer les paquets nécessaires et faire le ménage.
